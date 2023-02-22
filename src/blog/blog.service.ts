@@ -7,11 +7,20 @@ import { BlogDto } from './DTO/blog.dto';
 @Injectable()
 export class BlogService {
   constructor(
-    @InjectModel(Blogs.name) private CodesModel: Model<BlogDocument>,
+    @InjectModel(Blogs.name) private BlogsModel: Model<BlogDocument>,
   ) {}
 
-  async addCsvToDb(csvData: BlogDto): Promise<any> {
-    const createdData = new this.CodesModel(csvData);
-    return createdData.save();
+  async getAllBlogs(): Promise<any> {
+    return this.BlogsModel.find();
+  }
+
+  async getBlogById(identifier: { id: string }): Promise<any> {
+    const { id } = identifier;
+    return this.BlogsModel.findById(id);
+  }
+
+  async newBlog(data: BlogDto): Promise<any> {
+    const createBlog = new this.BlogsModel(data);
+    return createBlog.save();
   }
 }

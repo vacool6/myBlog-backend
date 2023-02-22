@@ -6,7 +6,7 @@ export type BlogDocument = HydratedDocument<Blogs>;
 @Schema({ timestamps: true })
 export class Blogs {
   @Prop()
-  coverImage: string;
+  coverImagePosition: number;
 
   @Prop()
   domain: string;
@@ -18,7 +18,7 @@ export class Blogs {
   body: string;
 
   @Prop()
-  authorImage: string;
+  authorImagePosition: number;
 
   @Prop()
   authorName: string;
