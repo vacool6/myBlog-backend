@@ -1,5 +1,5 @@
-import { Controller, Param, Post, Get, UploadedFile } from '@nestjs/common';
-import { Body, Res, UseInterceptors } from '@nestjs/common/decorators';
+import { Controller, Param, Post, Get } from '@nestjs/common';
+import { Body, Res } from '@nestjs/common/decorators';
 import { BlogService } from './blog.service';
 import { BlogDto } from './DTO/blog.dto';
 
@@ -30,7 +30,7 @@ export class BlogController {
   @Post('/')
   async createNewBlog(@Body() blogDto: BlogDto, @Res() res) {
     try {
-      const newBlog = await this.blogService.newBlog(blogDto);
+      await this.blogService.newBlog(blogDto);
       return res
         .status(200)
         .json({ success: true, data: 'Successfully created a blog.' });

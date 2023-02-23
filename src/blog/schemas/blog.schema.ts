@@ -1,30 +1,75 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
 
 export type BlogDocument = HydratedDocument<Blogs>;
 
 @Schema({ timestamps: true })
 export class Blogs {
-  @Prop()
+  @Prop({
+    type: Number,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   coverImagePosition: number;
 
-  @Prop()
+  @Prop({
+    type: String,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   domain: string;
 
-  @Prop()
+  @Prop({
+    type: String,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   title: string;
 
-  @Prop()
+  @Prop({
+    type: String,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   body: string;
 
-  @Prop()
+  @Prop({
+    type: Number,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   authorImagePosition: number;
 
-  @Prop()
+  @Prop({
+    type: String,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   authorName: string;
 
-  @Prop()
+  @Prop({
+    type: String,
+    required: true,
+    validate: {
+      validator: () => Promise.resolve(),
+    },
+  })
   createdDate: string;
+
+  @Prop({ ref: 'Comments', default: [] })
+  comments: [];
 }
 
 export const BlogSchema = SchemaFactory.createForClass(Blogs);
